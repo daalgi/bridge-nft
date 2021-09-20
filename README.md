@@ -35,9 +35,14 @@ Hardhat comes with a local blockchain built-in, which can be started:
 npx hardhat node
 ```
 
-Deploy contracts to the local blockchain:
+Deploy contracts to the local network:
 ```
 npx hardhat run --network localhost scripts/deploy.js
+```
+
+Deploy to the live network:
+```
+npx hardhat run scripts/deploy.js --network rinkeby
 ```
 
 Interacting from the console:
