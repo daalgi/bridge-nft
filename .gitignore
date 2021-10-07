@@ -1,6 +1,7 @@
 img/
 artifacts/
 cache/
+media/
 
 # Logs
 logs

@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Bridge contract", async () => {
+describe("MyLittleBridge contract", async () => {
     let owner, user1, factory, contract, numTokens
     let baseTokenURI = "ipfs/abc/"
 
@@ -12,7 +12,7 @@ describe("Bridge contract", async () => {
 
     beforeEach(async () => {
         [owner, user1, user2] = await ethers.getSigners()
-        factory = await ethers.getContractFactory("BridgeNFT")
+        factory = await ethers.getContractFactory("MyLittleBridge")
         contract = await factory.deploy(nftCurrentMax)
         await contract.setBaseURI(baseTokenURI)
     })

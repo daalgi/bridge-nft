@@ -1,33 +1,31 @@
 const dotevn = require("dotenv")
 dotevn.config()
 
-const main = async () => {
-    const nftContractFactory = await hre.ethers.getContractFactory("BridgeNFT")
-    // const nftContractFactory = await hre.ethers.getContractFactory("NotMyEpicNFT")
-    const baseTokenURI = ""
-    const nftContract = await nftContractFactory.deploy(baseTokenURI)
-    await nftContract.deployed()
-    console.log("Contract deployed to:", nftContract.address)
 
-    // console.log(await nftContract._NEXT_SALE_START())
-    let txn = await nftContract.buy(2, { 
+const OPENSEA_URL = "https://testnets.opensea.io/assets/"
+const ETHERSCAN_URL = "https://rinkeby.etherscan.io/address/"
+
+const main = async () => {
+    const factory = await hre.ethers.getContractFactory("MyLittleBridge")
+    // const nftContractFactory = await hre.ethers.getContractFactory("NotMyEpicNFT")
+    const nftCurrentMax = 5
+    const contract = await factory.deploy(
+        nftCurrentMax
+    )
+    await contract.deployed()
+    console.log("Contract deployed to:", contract.address)
+
+    await contract.setSaleOpen(true)
+
+    let txn = await contract.buy(1, { 
         value: hre.ethers.utils.parseEther('0.07')
     })
+    console.log("Mining...")
     await txn.wait()
 
-    // let txn = await nftContract.makeAnEpicNFT({
-    //     value: hre.ethers.utils.parseEther('0.07')
-    // })
-    // await txn.wait()
-    // console.log("NFT minted")
-
-    // txn = await nftContract.makeAnEpicNFT()
-    // await txn.wait()
-    // console.log("NFT minted")
-    
-    // txn = await nftContract.makeAnEpicNFT()
-    // await txn.wait()
-    // console.log("NFT minted")
+    let tokenId = await contract.tokenCounter()
+    tokenId = tokenId.toNumber() - 1
+    console.log(`NFT minted: ${OPENSEA_URL}/${contract.address}/${tokenId}`)
 
 }
 

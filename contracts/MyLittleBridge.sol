@@ -10,19 +10,20 @@ import "hardhat/console.sol";
 //0x98472C7099675A82d9f8E65b67e5a0586FcCB284
 //https://rinkeby.etherscan.io/address/0x98472c7099675a82d9f8e65b67e5a0586fccb284
 
-contract BridgeNFT is ERC721Enumerable, Ownable {
+contract MyLittleBridge is ERC721Enumerable, Ownable {
 
     using Strings for uint256;
 
     // URIs
-    string private _baseTokenURI;
-    string private _contractURI;  // Opensea contract-level metadata
+    string private _baseTokenURI = "https://ipfs.io/ipfs/QmSWbCmiATxHVTqYmnHXMxjLqWt4P4vZEQERC9jGbCVGYV/";
+    // Opensea contract-level metadata
+    string private _contractURI = "https://ipfs.io/ipfs/QmS34T1Xigg2gAkYpRii9RtCMTsNXjfuFvhoBHoT41rtTq";
     
     // Authors
     // address private owner;
-    address private artist = 0x2364e8B70a3746Bf5be6215596Df4F36DEe86cE0;
-    address private dev = 0x2364e8B70a3746Bf5be6215596Df4F36DEe86cE0;
-    address private manager = 0x2364e8B70a3746Bf5be6215596Df4F36DEe86cE0;
+    address private artist = 0x9542AF24C8E6FE8DCb270a516A6b2f97F08c4696;
+    address private dev = 0xcE0bd02f2Eeb223EA93906ce76249bCBC5533eb9;
+    address private manager = 0xcE0bd02f2Eeb223EA93906ce76249bCBC5533eb9;
 
     // Token counting
     uint256 public tokenCounter;

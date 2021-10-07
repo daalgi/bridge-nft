@@ -23,7 +23,10 @@ module.exports = {
   networks: {
     rinkeby: {
       url: process.env.ALCHEMY_API_URL,
-      accounts: [process.env.WALLET_PRIVATE_KEY]
+      accounts: [process.env.WALLET_PRIVATE_KEY],
+      gas: 2100000,
+      gasPrice: 8000000000,
+      saveDeployments: true,
     }
   }
 };
