@@ -4,7 +4,7 @@ const OPENSEA_URL = "https://testnets.opensea.io/assets/"
 async function main() {
     const [deployer] = await ethers.getSigners()
     console.log("Deploying contracts with the account:", deployer.address)
-    console.log("Account balance:", (await deployer.getBalance() * 1e-18).toString(), "ETH")
+    console.log("Account balance:", (await deployer.getBalance() * 1e-18).toString(), "ETH\n")
     
     const factory = await hre.ethers.getContractFactory("MyLittleBridge")
     const nftCurrentMax = 5
@@ -18,6 +18,7 @@ async function main() {
     console.log("Contract deployed!")
     
     await contract.setSaleOpen(true)    
+    console.log("Minting an NFT...")
     let txn = await contract.buy(1, { 
         value: hre.ethers.utils.parseEther('0.07')
     })
